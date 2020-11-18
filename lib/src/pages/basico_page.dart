@@ -33,10 +33,11 @@ class BasicoPage extends StatelessWidget {
   Widget _crearImagen() {
     return Container(
       width: double.infinity,
-      child: Image(
+      child: FadeInImage(
         image: NetworkImage(
           'https://d8952835-a-62cb3a1a-s-sites.googlegroups.com/site/brangelfalls/home/Angel-Falls-Highest-Fall.jpg?attachauth=ANoY7cpdL64nZkh8mVn4po1cBT7vcBN7IoECKMEt-C8L74SA374qTebsCIkQPYPSvT48ADed31V8-0T4Ws4eEAWf_222nvg3gkmQfR_I8UUzFEMRSRXeyQy13ZDIM7gxRothHbaUNzWiOGor-QmODdMqBbMyyhIdSoA06RkHWR4EtZy_n_4alZfR7iolj1xCG6RGcEP68_hPDO21IaOKNzOX70gPWbY7ANEgs47vOEWO63CFXuKam64%3D&attredirects=0'
         ),
+        placeholder: AssetImage('assets/img/no-image.jpg'),
         height: 250.0,
         fit: BoxFit.cover,
       ),
