@@ -1,6 +1,7 @@
-
 import 'package:flutter/material.dart';
+
 import 'dart:math';
+import 'dart:ui';
 
 class BotonesPage extends StatelessWidget {
 
@@ -14,33 +15,14 @@ class BotonesPage extends StatelessWidget {
           SingleChildScrollView(
             child: Column(
               children: <Widget>[
-                _titulos()
+                _titulos(),
+                _botonesRedondeados(),
               ]
             ),
           )
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        unselectedItemColor: Color.fromRGBO(110, 110, 148, 1.0),
-        fixedColor: Colors.pinkAccent,
-        backgroundColor: Color.fromRGBO(55, 57, 84, 1.0),
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon( Icons.calendar_today ),
-            label: 'Hola'
-          ),
-          BottomNavigationBarItem(
-            icon: Icon( Icons.pie_chart_outlined ),
-            label: 'Hola'
-          ),
-          BottomNavigationBarItem(
-            icon: Icon( Icons.supervised_user_circle ),
-            label: 'Hola'
-          ),
-        ],
-      ),
+      bottomNavigationBar: _bottomNavigationBar(),
     );
   }
 
@@ -108,4 +90,98 @@ class BotonesPage extends StatelessWidget {
 
   }
 
+  Widget _bottomNavigationBar(){
+    return BottomNavigationBar(
+      showSelectedLabels: false,
+      showUnselectedLabels: false,
+      unselectedItemColor: Color.fromRGBO(110, 110, 148, 1.0),
+      fixedColor: Colors.pinkAccent,
+      backgroundColor: Color.fromRGBO(55, 57, 84, 1.0),
+      items: <BottomNavigationBarItem>[
+        BottomNavigationBarItem(
+          icon: Icon( Icons.calendar_today ),
+          label: 'Calendar'
+        ),
+        BottomNavigationBarItem(
+          icon: Icon( Icons.pie_chart_outlined ),
+          label: 'Charts'
+        ),
+        BottomNavigationBarItem(
+          icon: Icon( Icons.supervised_user_circle ),
+          label: 'People'
+        ),
+      ],
+    );
+  }
+
+  Widget _botonesRedondeados(){
+
+    return Table(
+      children: <TableRow>[
+        TableRow(
+          children: [
+            _crearBotonRedondeado( color: Colors.blue, icono: Icons.cloud, texto: 'General' ),
+            _crearBotonRedondeado( color: Colors.purple, icono: Icons.directions_bus, texto: 'Transport' ),
+          ]
+        ),
+        TableRow(
+          children: [
+            _crearBotonRedondeado( color: Colors.pink, icono: Icons.shopping_bag, texto: 'Shopping' ),
+            _crearBotonRedondeado( color: Colors.orange, icono: Icons.monetization_on, texto: 'Bills' ),
+          ]
+        ),
+        TableRow(
+          children: [
+            _crearBotonRedondeado( color: Colors.blueAccent, icono: Icons.movie, texto: 'Entertainment' ),
+            _crearBotonRedondeado( color: Colors.green, icono: Icons.food_bank, texto: 'Food' ),
+          ]
+        ),
+        TableRow(
+          children: [
+            _crearBotonRedondeado( color: Colors.red, icono: Icons.photo, texto: 'Photos' ),
+            _crearBotonRedondeado( color: Colors.teal, icono: Icons.help, texto: 'Help' ),
+          ]
+        ),
+      ],
+    );
+
+  }
+
+  Widget _crearBotonRedondeado({String texto, Color color, IconData icono}){
+
+    return Container(
+      height: 180.0,
+      margin: EdgeInsets.all(15.0),
+      width: 180.0,
+      decoration: BoxDecoration(
+          color: Color.fromRGBO(62, 66, 107, 0.7),
+          borderRadius: BorderRadius.circular(20.0)),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20.0),
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              SizedBox(
+                height: 5.0,
+              ),
+              CircleAvatar(
+                backgroundColor: color,
+                radius: 40.0,
+                child: Icon(icono, color: Colors.white, size: 30.0),
+              ),
+              Text(
+                texto,
+                style: TextStyle(color: color, fontSize: 18.0),
+              ),
+              SizedBox(
+                height: 5.0,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 }
